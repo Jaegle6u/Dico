@@ -14,6 +14,8 @@
 		C481F87427CE0B6800CC474E /* DicoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481F87327CE0B6800CC474E /* DicoTests.swift */; };
 		C481F87E27CE0B6800CC474E /* DicoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481F87D27CE0B6800CC474E /* DicoUITests.swift */; };
 		C481F88027CE0B6800CC474E /* DicoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481F87F27CE0B6800CC474E /* DicoUITestsLaunchTests.swift */; };
+		C481F88F27CE753000CC474E /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481F88E27CE753000CC474E /* Word.swift */; };
+		C481F89227CE766E00CC474E /* WordApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481F89127CE766E00CC474E /* WordApi.swift */; };
 		CFA18E8B684CBDD63A6BAD65 /* Pods_Dico_DicoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0304CACD219118A482CA2710 /* Pods_Dico_DicoUITests.framework */; };
 		E8AC1F3327769179800706E1 /* Pods_Dico.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B5D1ED593D8807199420DB /* Pods_Dico.framework */; };
 		F8B3277B04850A5F0139AE81 /* Pods_DicoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9539DB2695F6BB0A097FF4D8 /* Pods_DicoTests.framework */; };
@@ -54,6 +56,8 @@
 		C481F87927CE0B6800CC474E /* DicoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DicoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C481F87D27CE0B6800CC474E /* DicoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicoUITests.swift; sourceTree = "<group>"; };
 		C481F87F27CE0B6800CC474E /* DicoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C481F88E27CE753000CC474E /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		C481F89127CE766E00CC474E /* WordApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordApi.swift; sourceTree = "<group>"; };
 		D58BABB79AC9E91BCD505101 /* Pods-Dico.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dico.debug.xcconfig"; path = "Target Support Files/Pods-Dico/Pods-Dico.debug.xcconfig"; sourceTree = "<group>"; };
 		DCA33ACAC64924B52D68B7D5 /* Pods-Dico-DicoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dico-DicoUITests.release.xcconfig"; path = "Target Support Files/Pods-Dico-DicoUITests/Pods-Dico-DicoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,7 +100,6 @@
 				A44400303D81B86A37E3BA0B /* Pods-DicoTests.debug.xcconfig */,
 				995D549ABB21ED9F9C63F2B0 /* Pods-DicoTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -135,6 +138,8 @@
 		C481F86127CE0B6600CC474E /* Dico */ = {
 			isa = PBXGroup;
 			children = (
+				C481F89027CE765000CC474E /* api */,
+				C481F88D27CE750100CC474E /* model */,
 				C481F86227CE0B6600CC474E /* DicoApp.swift */,
 				C481F86427CE0B6600CC474E /* ContentView.swift */,
 				C481F86627CE0B6800CC474E /* Assets.xcassets */,
@@ -166,6 +171,22 @@
 				C481F87F27CE0B6800CC474E /* DicoUITestsLaunchTests.swift */,
 			);
 			path = DicoUITests;
+			sourceTree = "<group>";
+		};
+		C481F88D27CE750100CC474E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				C481F88E27CE753000CC474E /* Word.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C481F89027CE765000CC474E /* api */ = {
+			isa = PBXGroup;
+			children = (
+				C481F89127CE766E00CC474E /* WordApi.swift */,
+			);
+			path = api;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,6 +429,8 @@
 			files = (
 				C481F86527CE0B6600CC474E /* ContentView.swift in Sources */,
 				C481F86327CE0B6600CC474E /* DicoApp.swift in Sources */,
+				C481F89227CE766E00CC474E /* WordApi.swift in Sources */,
+				C481F88F27CE753000CC474E /* Word.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
