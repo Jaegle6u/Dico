@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Foundation
-import SwiftyJSON
+//import SwiftyJSON
 
 
 struct ContentView: View {
@@ -23,7 +23,7 @@ struct Acceuil: View {
     @State private var isShowingDetailView = false
     @State private var mot: String = ""
     @State private var word: String = ""
-    @StateObject var viewModel: ViewModel = ViewModel()
+    @ObservedObject private var viewModel = ViewModel()
     
     var body: some View {
     NavigationView {
@@ -36,7 +36,7 @@ struct Acceuil: View {
                         .padding(.bottom, 250)
                     
                     
-                    Text("Please enter a word")
+                    Text("Please enter a noun or a verb")
                         .frame(width: 250.0, height: 50)
                         .padding(.top, -250)
                         
@@ -49,11 +49,11 @@ struct Acceuil: View {
                     
                     
                     
-                    NavigationLink(destination: InfoMot(wordsDefinition: viewModel.words), isActive: $isShowingDetailView) { EmptyView() }
+                    NavigationLink(destination: InfoMot(wordsDefinition: viewModel.word), isActive: $isShowingDetailView) { EmptyView() }
                     Button("Find") {
                         isShowingDetailView = true
                         
-                        viewModel.getData(searchWord: mot)
+                        viewModel.getWord(searchWord: mot)
                     }
                     .padding()
                     .foregroundColor(Color.white)
@@ -63,11 +63,14 @@ struct Acceuil: View {
                     Text("Or")
                         .frame(width: 250.0, height: 50)
                     
-                    NavigationLink(destination: InfoMot(wordsDefinition: viewModel.words), isActive: $isShowingDetailView) { EmptyView() }
+                    NavigationLink(destination: InfoMot(wordsDefinition: viewModel.word), isActive: $isShowingDetailView) { EmptyView() }
                     .padding(.top, 100)
                     .padding(.bottom, -100)
                     Button("Random word") {
                             isShowingDetailView = true
+                        
+                            mot = "random"
+                            viewModel.getWord(searchWord: mot)
                         }
                     .padding()
                     .foregroundColor(Color.white)
@@ -78,23 +81,40 @@ struct Acceuil: View {
         }
 }
 
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
+}
+
 struct InfoMot: View {
     
-    var wordsDefinition: [Word]
+    var wordsDefinition: Word
     
     var body: some View {
         
         NavigationView {
-            
             VStack{
                 List{
-                    Text("Word : \(wordsDefinition.isEmpty ? "tesst" : wordsDefinition[0].word ?? "test")").font(.title)
-                    Text("Definition : ").font(.title3)
-                    Text("Synonyms : ")
-                    Text("Antonyms : ")
-                    Text("Example : ")
+                    Text("Word : \(wordsDefinition.word.capitalizingFirstLetter())").font(.title)
+                    Text("Definitions").font(.title3)
                     
+                    // Définitions de mots
+                    ForEach(wordsDefinition.results, id: \.self)  {item in
+                        Text(item.definition.capitalizingFirstLetter())
+                    }
                     
+                    // Synonyms de mots
+                    Text("Synonyms").font(.title3)
+                    ForEach(wordsDefinition.results, id: \.self)  {item in
+                        ForEach(item.synonyms!, id: \.self)  {item in
+                            Text(item.capitalizingFirstLetter())
+                        }
+                    }
                 }
                 
             }.padding(.top,-385)
