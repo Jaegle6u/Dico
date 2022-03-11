@@ -14,9 +14,9 @@
             filePath = "Dico/api/WordApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "getWord(searchWord:)"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getWord(searchWord:random:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -30,26 +30,42 @@
             filePath = "Dico/api/WordApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "getWord(searchWord:)"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getWord(searchWord:random:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "18BCA648-F9E8-48CA-8403-54F6F8AFBF6D"
+            uuid = "C4E681F4-D28A-43AC-9ACA-5197C35C9AF4"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dico/ContentView.swift"
+            filePath = "Dico/api/WordApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "getWord(searchWord:random:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FBBB16B5-6A70-42BB-A6CB-03A809FD129F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dico/api/WordApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "getWord(searchWord:random:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

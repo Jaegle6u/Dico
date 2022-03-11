@@ -7,23 +7,17 @@
 
 import SwiftUI
 import Foundation
-//import SwiftyJSON
-
-
+    
+    
 struct ContentView: View {
- 
-    
     var body: some View {
-        Acceuil()
+            Acceuil()
         }
-    
 }
+
 struct Acceuil: View {
-    @State private var isShowingFindView = false
     @State private var isShowingDetailView = false
     @State private var mot: String = ""
-    @State private var word: String = ""
-    @ObservedObject private var viewModel = ViewModel()
     
     var body: some View {
     NavigationView {
@@ -46,14 +40,9 @@ struct Acceuil: View {
                         .disableAutocorrection(false)
                         .padding(.top, -200)
                     
-                    
-                    
-                    
-                    NavigationLink(destination: InfoMot(wordsDefinition: viewModel.word), isActive: $isShowingDetailView) { EmptyView() }
+                    NavigationLink(destination: InfoMot(mot: mot), isActive: $isShowingDetailView) { EmptyView() }
                     Button("Find") {
                         isShowingDetailView = true
-                        
-                        viewModel.getWord(searchWord: mot)
                     }
                     .padding()
                     .foregroundColor(Color.white)
@@ -63,15 +52,12 @@ struct Acceuil: View {
                     Text("Or")
                         .frame(width: 250.0, height: 50)
                     
-                    NavigationLink(destination: InfoMot(wordsDefinition: viewModel.word), isActive: $isShowingDetailView) { EmptyView() }
+                    NavigationLink(destination: InfoMot(mot: mot), isActive: $isShowingDetailView) { EmptyView() }
                     .padding(.top, 100)
                     .padding(.bottom, -100)
                     Button("Random word") {
-                            isShowingDetailView = true
-                        
-                            mot = "random"
-                            viewModel.getWord(searchWord: mot)
-                        }
+                        isShowingDetailView = true
+                    }
                     .padding()
                     .foregroundColor(Color.white)
                     .background(Color(red: 0, green: 0.22, blue: 0.67))
@@ -92,32 +78,59 @@ extension String {
 }
 
 struct InfoMot: View {
-    
-    var wordsDefinition: Word
+    @ObservedObject private var viewModel = ViewModel()
+    var mot: String
     
     var body: some View {
-        
         NavigationView {
             VStack{
                 List{
-                    Text("Word : \(wordsDefinition.word.capitalizingFirstLetter())").font(.title)
+                    Text("Word : \(viewModel.word.word.capitalizingFirstLetter())").font(.title)
                     Text("Definitions").font(.title3)
                     
                     // Définitions de mots
-                    ForEach(wordsDefinition.results, id: \.self)  {item in
+                    ForEach(viewModel.word.results, id: \.self)  {item in
                         Text(item.definition.capitalizingFirstLetter())
                     }
                     
                     // Synonyms de mots
+                    Text("").font(.title3)
                     Text("Synonyms").font(.title3)
-                    ForEach(wordsDefinition.results, id: \.self)  {item in
-                        ForEach(item.synonyms!, id: \.self)  {item in
-                            Text(item.capitalizingFirstLetter())
+                    if viewModel.word.results == nil?! {
+                        
+                    }else{
+                        ForEach(viewModel.word.results, id: \.self)  {item in
+                            if item.synonyms == nil?! {
+                            }else{
+                                
+                                    ForEach(item.synonyms!, id: \.self)  {item in
+                                        Text(item.capitalizingFirstLetter())
+                                    }
+                            }
+                        }
+                    }
+                    
+                    // Synonyms de mots
+                    Text("").font(.title3)
+                    Text("Examples").font(.title3)
+                    if viewModel.word.results == nil?! {
+                        
+                    }else{
+                        ForEach(viewModel.word.results, id: \.self)  {item in
+                            if item.examples == nil?! {
+                            }else{
+                                
+                                    ForEach(item.examples!, id: \.self)  {item in
+                                        Text(item.capitalizingFirstLetter())
+                                    }
+                            }
                         }
                     }
                 }
                 
             }.padding(.top,-385)
+        }.onAppear {
+            viewModel.getWord(searchWord: mot, random: false)
         }
     }
 }
