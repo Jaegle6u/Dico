@@ -12,9 +12,9 @@ class ViewModel: ObservableObject {
         pronunciation: Pronunciation(all: "[NO PRONUNCIATION AVAILABLE]"),
         frequency: 0)
 
-    func getWord(searchWord: String, random: Bool) {
+    func getWord(searchWord: String) {
         var url = URL(string: "")
-        url = random ? URL(string: "https://wordsapiv1.p.rapidapi.com/words/?random=true") : URL(string: "https://wordsapiv1.p.rapidapi.com/words/\(searchWord)")
+        url = searchWord == "Random" || searchWord == "random" ? URL(string: "https://wordsapiv1.p.rapidapi.com/words/?random=true") : URL(string: "https://wordsapiv1.p.rapidapi.com/words/\(searchWord)")
          
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
@@ -25,8 +25,9 @@ class ViewModel: ObservableObject {
             guard let data = data, error == nil else {
                 return
             }
-            
+            print(data)
             let result = try? JSONDecoder().decode(Word.self, from: data)
+            
             if let result = result {
                 DispatchQueue.main.async {
                     self.word = result
